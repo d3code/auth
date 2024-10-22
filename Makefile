@@ -1,6 +1,6 @@
 .PHONY: clean proto
 
-proto: clean install
+proto: install
 	buf dep update proto
 	buf generate proto
 	go mod tidy
