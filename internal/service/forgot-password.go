@@ -1,4 +1,4 @@
-package auth_service
+package service
 
 import (
     "context"
@@ -7,6 +7,6 @@ import (
     "google.golang.org/grpc/status"
 )
 
-func (AuthService) Register(context.Context, *auth.RegisterRequest) (*auth.JwtToken, error) {
+func (AuthService) ForgotPassword(context.Context, *auth.ForgotPasswordRequest) (*auth.ForgotPasswordResponse, error) {
     return nil, status.Errorf(codes.Unimplemented, "Not implemented")
 }
