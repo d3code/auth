@@ -4,7 +4,7 @@ import (
     _ "embed"
     "github.com/d3code/auth/internal/config"
     "github.com/d3code/auth/internal/model"
-    "github.com/d3code/pkg/encrypt"
+    "github.com/d3code/auth/pkg/encrypt"
     "github.com/d3code/zlog"
     "github.com/google/uuid"
 )

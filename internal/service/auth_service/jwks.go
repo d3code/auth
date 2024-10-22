@@ -5,7 +5,7 @@ import (
     "encoding/json"
     "github.com/d3code/auth/generated/protobuf/v1/auth"
     "github.com/d3code/auth/internal/db"
-    "github.com/d3code/pkg/encrypt"
+    "github.com/d3code/auth/pkg/encrypt"
     "github.com/d3code/zlog"
     "github.com/go-jose/go-jose/v3"
     "google.golang.org/grpc/codes"

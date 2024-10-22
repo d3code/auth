@@ -3,7 +3,6 @@ package config
 import (
     "database/sql"
     "fmt"
-    "github.com/d3code/pkg/cfg"
     "github.com/d3code/zlog"
     _ "github.com/go-sql-driver/mysql"
     "sync"
@@ -70,7 +69,7 @@ type DatabaseConfig struct {
 
 func config() DatabaseConfig {
     onceDatabase.Do(func() {
-        cfg.LoadConfiguration("database", &configDatabase)
+        LoadConfiguration("database", &configDatabase)
     })
 
     return configDatabase

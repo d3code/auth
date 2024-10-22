@@ -58,7 +58,7 @@ func (g *HttpGateway) Run(ctx context.Context) {
         var connection *grpc.ClientConn
         if grpcConnection.Secure {
             zlog.Log.Warnf("Secure connection for path [%s] to %s", p, grpcConnection.Address())
-            conn, errDial := grpc.DialContext(ctx, grpcConnection.Address(), grpc.WithTransportCredentials(credentials.NewTLS(&tls.Config{InsecureSkipVerify: true})))
+            conn, errDial := grpc.NewClient(grpcConnection.Address(), grpc.WithTransportCredentials(credentials.NewTLS(&tls.Config{InsecureSkipVerify: true})))
             if errDial != nil {
                 zlog.Log.Fatalf("Failed to dial server: %v", errDial)
                 continue
@@ -66,7 +66,7 @@ func (g *HttpGateway) Run(ctx context.Context) {
             connection = conn
         } else {
             zlog.Log.Warnf("Insecure connection for path [%s] to %s", p, grpcConnection.Address())
-            conn, errDial := grpc.DialContext(ctx, grpcConnection.Address(), grpc.WithTransportCredentials(insecure.NewCredentials()))
+            conn, errDial := grpc.NewClient(grpcConnection.Address(), grpc.WithTransportCredentials(insecure.NewCredentials()))
             if errDial != nil {
                 zlog.Log.Fatalf("Failed to dial server: %v", errDial)
                 continue

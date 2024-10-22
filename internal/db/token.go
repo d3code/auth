@@ -6,7 +6,7 @@ import (
     "github.com/d3code/auth/generated/protobuf/v1/auth"
     "github.com/d3code/auth/internal/config"
     "github.com/d3code/auth/internal/model"
-    "github.com/d3code/pkg/encrypt"
+    "github.com/d3code/auth/pkg/encrypt"
     "github.com/d3code/zlog"
     "github.com/golang-jwt/jwt/v4"
     "github.com/google/uuid"
@@ -80,12 +80,14 @@ func createToken(account *model.User, refresh bool, now time.Time, secret model.
 
     var expiresAt = now.Add(time.Second * expiration)
     claims := &CustomClaims{
-        StandardClaims: &jwt.StandardClaims{
-            ExpiresAt: expiresAt.Unix(),
-            Id:        uuid.New().String(),
-            IssuedAt:  now.Unix(),
+        RegisteredClaims: &jwt.RegisteredClaims{
+            ExpiresAt: jwt.NewNumericDate(expiresAt),
+            ID:        uuid.New().String(),
+            IssuedAt:  jwt.NewNumericDate(now),
+            NotBefore: jwt.NewNumericDate(now),
             Issuer:    config.Environment().Token.Issuer,
             Subject:   account.Id,
+            Audience:  []string{config.Environment().Token.Audience},
         },
         Scope: scope,
     }
@@ -102,7 +104,7 @@ func createToken(account *model.User, refresh bool, now time.Time, secret model.
 }
 
 type CustomClaims struct {
-    *jwt.StandardClaims
+    *jwt.RegisteredClaims
     Scope string `json:"scope"`
 }
 

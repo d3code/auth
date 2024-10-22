@@ -7,7 +7,6 @@ toolchain go1.22.6
 require (
 	connectrpc.com/connect v1.17.0
 	github.com/MicahParks/keyfunc v1.9.0
-	github.com/d3code/pkg v0.0.0-20230930071117-b4c11361435a
 	github.com/d3code/zlog v0.0.0-20230930052759-e8d58c011286
 	github.com/go-jose/go-jose/v3 v3.0.3
 	github.com/golang-jwt/jwt/v4 v4.5.0

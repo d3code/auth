@@ -1,7 +1,6 @@
 package config
 
 import (
-    "github.com/d3code/pkg/cfg"
     "github.com/d3code/zlog"
     "sync"
 )
@@ -13,7 +12,7 @@ var (
 
 func Environment() EnvironmentConfig {
     onceEnvironment.Do(func() {
-        err := cfg.LoadConfiguration("", &configEnvironment)
+        err := LoadConfiguration("", &configEnvironment)
         if err != nil {
             zlog.Log.Fatalf("Error loading configuration: %s", err.Error())
         }
