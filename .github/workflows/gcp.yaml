@@ -19,6 +19,15 @@ jobs:
         with:
           go-version: 1.21.x
 
+      - name: Install buf
+        run: |
+          BIN="/usr/local/bin" && \
+          VERSION="1.45.0" && \
+          curl -sSL \
+          "https://github.com/bufbuild/buf/releases/download/v${VERSION}/buf-$(uname -s)-$(uname -m)" \
+          -o "${BIN}/buf" && \
+          chmod +x "${BIN}/buf"
+
       - name: Generate
         run: make proto
 
