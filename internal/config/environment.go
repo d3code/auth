@@ -12,7 +12,7 @@ var (
 
 func Environment() EnvironmentConfig {
     onceEnvironment.Do(func() {
-        err := LoadConfiguration("", &configEnvironment)
+        err := loadConfiguration("", &configEnvironment)
         if err != nil {
             zlog.Log.Fatalf("Error loading configuration: %s", err.Error())
         }
@@ -21,13 +21,13 @@ func Environment() EnvironmentConfig {
 }
 
 type EnvironmentConfig struct {
-    Database DatabaseConfig `yaml:"database"`
-    Register Register       `yaml:"register"`
-    Mail     Mail           `yaml:"mail"`
-    Token    Token          `yaml:"token"`
+    Database Database `yaml:"database"`
+    Register Register `yaml:"register"`
+    Mail     Mail     `yaml:"mail"`
+    Token    Token    `yaml:"token"`
 }
 
-type DatabaseConfig struct {
+type Database struct {
     ConnectionType string `yaml:"connection_type"`
     User           string `yaml:"user"`
     Password       string `yaml:"password"`

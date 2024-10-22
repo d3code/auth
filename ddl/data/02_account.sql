@@ -1,11 +1,10 @@
 USE auth;
 
-# declare uid UUID_TO_BIN(UUID());
+# Declare id variables
 SET @uid_a := UUID_TO_BIN(UUID());
-
 SET @uid_root := UUID_TO_BIN(UUID());
 
-# Create account
+# Create account a
 INSERT INTO user (id,
                   username,
                   password,
@@ -17,6 +16,7 @@ VALUES (@uid_a,
         'User',
         'Standard');
 
+# Create account root
 INSERT INTO user (id,
                   username,
                   password,
@@ -28,9 +28,8 @@ VALUES (@uid_root,
         'User',
         'Root');
 
-
-INSERT INTO user_scope (user_id,
-                        scope_id)
-SELECT @uid_a, id
+# Assign scopes to account root
+INSERT INTO user_scope (user_id, scope_id)
+SELECT @uid_root, id
 FROM scope
-WHERE name = 'auth:admin';
+WHERE name = 'admin';

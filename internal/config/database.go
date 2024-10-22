@@ -13,7 +13,6 @@ func DatabaseConnection() *sql.DB {
     if db == nil {
         db = connect()
     }
-
     return db
 }
 
