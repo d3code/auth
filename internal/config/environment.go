@@ -21,9 +21,20 @@ func Environment() EnvironmentConfig {
 }
 
 type EnvironmentConfig struct {
-    Register Register `yaml:"register"`
-    Mail     Mail     `yaml:"mail"`
-    Token    Token    `yaml:"token"`
+    Database DatabaseConfig `yaml:"database"`
+    Register Register       `yaml:"register"`
+    Mail     Mail           `yaml:"mail"`
+    Token    Token          `yaml:"token"`
+}
+
+type DatabaseConfig struct {
+    ConnectionType string `yaml:"connection_type"`
+    User           string `yaml:"user"`
+    Password       string `yaml:"password"`
+    Host           string `yaml:"host"`
+    Port           string `yaml:"port"`
+    ConnectionName string `yaml:"connection_name"`
+    DatabaseName   string `yaml:"database_name"`
 }
 
 type Token struct {

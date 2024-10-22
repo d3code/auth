@@ -8,3 +8,10 @@ token:
   audience: https://auth.com
   expiration: 300 # (3600 = 1 hour, 300 = 5 minutes)
   expiration_refresh: 86400 # 1 day
+
+database:
+  connection_type: unix
+  connection_name: { { DATABASE_CONNECTION } }
+  database_name: { { DATABASE_SCHEMA } }
+  user: { { DATABASE_USER } }
+  password: { { DATABASE_PASSWORD } }

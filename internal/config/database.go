@@ -5,7 +5,6 @@ import (
     "fmt"
     "github.com/d3code/zlog"
     _ "github.com/go-sql-driver/mysql"
-    "sync"
 )
 
 var db *sql.DB
@@ -19,7 +18,7 @@ func DatabaseConnection() *sql.DB {
 }
 
 func connect() *sql.DB {
-    database := config()
+    database := Environment().Database
     var (
         user           = database.User           // root
         password       = database.Password       // password
@@ -50,27 +49,4 @@ func buildConnection(connectionType string, host string, port string, unixSocket
 
     zlog.Log.Fatalf("Invalid connection_type [ %s ]", connectionType)
     return ""
-}
-
-var (
-    configDatabase DatabaseConfig
-    onceDatabase   sync.Once
-)
-
-type DatabaseConfig struct {
-    ConnectionType string `yaml:"connection_type"`
-    User           string `yaml:"user"`
-    Password       string `yaml:"password"`
-    Host           string `yaml:"host"`
-    Port           string `yaml:"port"`
-    ConnectionName string `yaml:"connection_name"`
-    DatabaseName   string `yaml:"database_name"`
-}
-
-func config() DatabaseConfig {
-    onceDatabase.Do(func() {
-        LoadConfiguration("database", &configDatabase)
-    })
-
-    return configDatabase
 }

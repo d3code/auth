@@ -1,7 +1,0 @@
-# Production Database Configuration
-
-connection_type: unix
-connection_name: {{ DATABASE_CONNECTION }}
-database_name: {{ DATABASE_SCHEMA }}
-user: {{ DATABASE_USER }}
-password: {{ DATABASE_PASSWORD }}
