@@ -21,7 +21,7 @@ type JWKSJson struct {
     } `json:"keys"`
 }
 
-func (AuthService) Jwks(c context.Context, r *auth.JwksRequest) (*auth.JwksResponse, error) {
+func (AuthService) Jwks(c context.Context, r *auth.EmptyRequest) (*auth.JwksResponse, error) {
     jwks := GetJwks()
     if jwks == nil {
         return nil, status.Errorf(codes.Internal, "unable to retrieve JWKS")
@@ -69,7 +69,6 @@ func GetJwks() *jose.JSONWebKeySet {
     }
 
     var jwkList []jose.JSONWebKey
-
     for _, secret := range secrets {
         privateKey := encrypt.RsaPrivateFromString(secret.KeyPrivate)
         publicKey := privateKey.PublicKey

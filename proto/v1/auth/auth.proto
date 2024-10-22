@@ -29,12 +29,23 @@ service AuthService {
       body: "*"
     };
   };
+  // Registers a new user
+  rpc ForgotPassword (ForgotPasswordRequest) returns (ForgotPasswordResponse) {
+    option (google.api.http) = {
+      post: "/v1/forgot-password",
+      body: "*"
+    };
+  };
   // JWKS
-  rpc Jwks (JwksRequest) returns (JwksResponse) {
+  rpc Jwks (EmptyRequest) returns (JwksResponse) {
     option (google.api.http) = {
       get: "/v1/.well-known/jwks.json"
     };
   };
+}
+
+// Common
+message EmptyRequest {
 }
 
 // Login
@@ -50,10 +61,19 @@ message RefreshRequest {
 
 // Register
 message RegisterRequest {
-  string email = 1;
+  string username = 1;
   string password = 2;
-  string name_given = 3;
-  string name_family = 4;
+  string email = 3;
+  string name_given = 4;
+  string name_family = 5;
+}
+
+// Forgot Password
+message ForgotPasswordRequest {
+  string username = 1;
+}
+message ForgotPasswordResponse {
+  bool success = 1;
 }
 
 // JWT
@@ -66,9 +86,6 @@ message JwtToken {
 }
 
 // JWKS
-message JwksRequest {
-}
-
 message JwksResponse {
   repeated Jwks keys = 1;
 }

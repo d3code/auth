@@ -17,26 +17,26 @@ import (
 
 func (AuthService) Refresh(c context.Context, r *auth.RefreshRequest) (*auth.JwtToken, error) {
     headerToken := r.GetRefreshToken()
-    jwks2 := GetJwks()
-    if jwks2 == nil {
+    jwks := GetJwks()
+    if jwks == nil {
         zlog.Log.Error("Missing JWKS")
         return nil, status.Errorf(codes.Internal, "Missing JWKS")
     }
 
-    jwksString, err := json.Marshal(jwks2)
+    jwksString, err := json.Marshal(jwks)
     if err != nil {
         zlog.Log.Error(err)
         return nil, err
     }
 
-    jwksJSON := json.RawMessage(jwksString)
-    jwks, jsonError := keyfunc.NewJSON(jwksJSON)
+    jwksRaw := json.RawMessage(jwksString)
+    jwksJson, jsonError := keyfunc.NewJSON(jwksRaw)
     if jsonError != nil {
         zlog.Log.Error(jsonError)
         return nil, jsonError
     }
 
-    token, jwtParseError := jwt.Parse(headerToken, jwks.Keyfunc)
+    token, jwtParseError := jwt.Parse(headerToken, jwksJson.Keyfunc)
     if jwtParseError != nil {
         zlog.Log.Error(jwtParseError)
         return nil, status.Errorf(codes.PermissionDenied, jwtParseError.Error())

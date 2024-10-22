@@ -8,11 +8,13 @@ SET @uid_root := UUID_TO_BIN(UUID());
 INSERT INTO user (id,
                   username,
                   password,
+                  email,
                   name_family,
                   name_given)
 VALUES (@uid_a,
         'a',
         '$2a$12$EXVcFG71dUpO8hqix7CCE.JQOamkWUX/tQqaom3tSPsVXHwNZ/KU6',
+        'a@auth.com',
         'User',
         'Standard');
 
@@ -20,11 +22,13 @@ VALUES (@uid_a,
 INSERT INTO user (id,
                   username,
                   password,
+                  email,
                   name_family,
                   name_given)
 VALUES (@uid_root,
         'root',
         '$2a$12$EXVcFG71dUpO8hqix7CCE.JQOamkWUX/tQqaom3tSPsVXHwNZ/KU6',
+        'root@auth.com',
         'User',
         'Root');
 
