@@ -1,6 +1,6 @@
 # Production Configuration
 
-key_path: rsa/AUTH_KEY
+key_path: rsa/AUTH_KEY.pem
 
 token:
   issuer: https://auth.com/auth/v1
