@@ -1,5 +1,5 @@
 # Auth Service
-
+[![Build Status](https://img.shields.io/github/actions/workflow/status/d3code/auth/build.yaml?branch=master&label=Documentation&logo=github)](https://github.com/d3code/auth/actions/workflows/build.yaml)
 ## Overview
 
 This repository contains the implementation of an authentication service using Go. The service provides functionalities for user registration and JWT token generation.
