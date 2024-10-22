@@ -1,0 +1,10 @@
+# Production Configuration
+
+key_path: rsa/AUTH_KEY
+
+token:
+  issuer: https://auth.com/auth/v1
+  issuer_grpc: auth.com:443
+  audience: https://auth.com
+  expiration: 300 # (3600 = 1 hour, 300 = 5 minutes)
+  expiration_refresh: 86400 # 1 day

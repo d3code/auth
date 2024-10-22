@@ -1,0 +1,86 @@
+syntax = "proto3";
+package v1.auth;
+option go_package = "github.com/d3code/auth/generated/protobuf/v1/auth";
+
+// Google
+import "google/api/annotations.proto";
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+
+service AuthService {
+  // Returns a token for a user
+  rpc Login (LoginRequest) returns (JwtToken) {
+    option (google.api.http) = {
+      post: "/v1/login",
+      body: "*"
+    };
+  };
+  // Refresh a token for a user
+  rpc Refresh (RefreshRequest) returns (JwtToken) {
+    option (google.api.http) = {
+      post: "/v1/refresh",
+      body: "*"
+    };
+  };
+  // Registers a new user
+  rpc Register (RegisterRequest) returns (JwtToken) {
+    option (google.api.http) = {
+      post: "/v1/register",
+      body: "*"
+    };
+  };
+  // JWKS
+  rpc Jwks (JwksRequest) returns (JwksResponse) {
+    option (google.api.http) = {
+      get: "/v1/.well-known/jwks.json"
+    };
+  };
+}
+
+// Login
+message LoginRequest {
+  string username = 1;
+  string password = 2;
+}
+
+// Refresh
+message RefreshRequest {
+  string refresh_token = 1;
+}
+
+// Register
+message RegisterRequest {
+  string email = 1;
+  string password = 2;
+  string name_given = 3;
+  string name_family = 4;
+}
+
+// JWT
+message JwtToken {
+  string access_token = 1;
+  string refresh_token = 2;
+  string token_type = 3;
+  int32 expires_in = 4;
+  google.protobuf.Timestamp expires_at = 5;
+}
+
+// JWKS
+message JwksRequest {
+}
+
+message JwksResponse {
+  repeated Jwks keys = 1;
+}
+
+message Jwks {
+  string kty = 1;
+  string kid = 2;
+  string n = 3;
+  string e = 4;
+  optional string alg = 5;
+  optional string use = 6;
+  optional string x5c = 7;
+  optional string x5t = 8;
+  optional string x5u = 9;
+}

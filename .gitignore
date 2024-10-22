@@ -1,0 +1,16 @@
+# IDE configuration files
+.idea/
+.vscode/
+
+# Operating system files
+.DS_Store
+
+# Go workspace
+go.work
+go.work.sum
+
+# Build
+build/
+dist/
+bin/
+generated/

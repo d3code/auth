@@ -1,0 +1,8 @@
+# Local Database Configuration
+
+connection_type: tcp
+host: localhost
+port: 3306
+database_name: auth
+user: root
+password: password

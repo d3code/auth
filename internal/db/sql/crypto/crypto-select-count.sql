@@ -1,0 +1,1 @@
+SELECT COUNT(*) FROM cryptocurrency WHERE (symbol LIKE ? OR name LIKE ?) AND (coin_market_cap_active = TRUE OR coin_market_cap_active != ?)

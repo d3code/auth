@@ -1,0 +1,1 @@
+SELECT BIN_TO_UUID(blockchain_id), BIN_TO_UUID(cryptocurrency_id), cryptocurrency_symbol, cryptocurrency_slug, cryptocurrency_name, blockchain_name, blockchain_enabled_api FROM blockchain
