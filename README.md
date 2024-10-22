@@ -29,17 +29,22 @@ This repository contains the implementation of an authentication service using G
     cd auth
     ```
 
-2. Install dependencies:
+2. Install Go dependencies:
     ```sh
     go mod tidy
     ```
-
-3. Compile Protocol Buffers:
+3. Install `buf`:
+    ```sh
+    brew tap bufbuild/buf
+    brew install buf
+    ```
+   
+4. Compile Protocol Buffers:
     ```sh
     make proto
     ```
 
-4. Setup database:
+5. Setup database:
     ```sh
     ./database.sh
     ```
