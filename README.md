@@ -10,6 +10,8 @@ This repository contains the implementation of an authentication service using G
 - `internal/service`: Implementation of the authentication services.
 - `internal/model`: Data models used in the service.
 - `pkg/encrypt`: Encryption utilities.
+- `pkg/server`: HTTP / gRPC server implementations.
+- `ddl`: Database schema.
 - `config`: Configuration.
 - `go.mod`: Go module dependencies.
 
@@ -53,4 +55,5 @@ This repository contains the implementation of an authentication service using G
 
 To run the authentication service, use the following command:
 ```sh
-go run main.go
+go run ./cmd/auth
+```
