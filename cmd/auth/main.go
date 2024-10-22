@@ -4,7 +4,7 @@ import (
     "context"
     "github.com/d3code/auth/generated/protobuf/v1/auth"
     "github.com/d3code/auth/internal/middleware"
-    "github.com/d3code/auth/internal/service/auth_service"
+    "github.com/d3code/auth/internal/service"
     "github.com/d3code/auth/pkg/server"
     "github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
     "google.golang.org/grpc"
@@ -21,7 +21,7 @@ func main() {
         Host: host,
         Port: grpcPort,
         RegisterServices: func(server *grpc.Server) {
-            auth.RegisterAuthServiceServer(server, &auth_service.AuthService{})
+            auth.RegisterAuthServiceServer(server, &service.AuthService{})
         },
     }
 
